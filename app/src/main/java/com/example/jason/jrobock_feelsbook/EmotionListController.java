@@ -19,4 +19,9 @@ public class EmotionListController {
         emotion = em;
     }
     static public Emotion getSave(){ return emotion;}
+    /*
+    Might want to move load/save file into here and use this to call it.
+    also might want to add a removeEmotion method so all emotion list activity
+    is done through here and saved right away
+     */
 }
