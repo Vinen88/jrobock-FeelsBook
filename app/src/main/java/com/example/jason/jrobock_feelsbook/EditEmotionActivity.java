@@ -1,12 +1,14 @@
 package com.example.jason.jrobock_feelsbook;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -34,7 +36,7 @@ public class EditEmotionActivity extends AppCompatActivity {
         emotion.setText(commentView.getText().toString());
         Toast.makeText(this,"Updated Comment",Toast.LENGTH_SHORT).show();
     }
-    public void EditDate(View view) {
+    public void editDate(View view) {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -54,7 +56,25 @@ public class EditEmotionActivity extends AppCompatActivity {
     }
 
     public void EditTime(View view){
-            
+        TimePickerDialog pickTime = new TimePickerDialog(EditEmotionActivity.this, android.R.style.Theme_Black, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String oldDate = emotion.getDate();
+                String [] parts = oldDate.split(" ");
+                String [] time = parts[3].split(":");
+                if (hourOfDay < 10) {  time[0] = "0"+Integer.toString(hourOfDay); }
+                else { time[0] = Integer.toString(hourOfDay); }
+                if (minute < 10) { time [1] = "0"+Integer.toString(minute); }
+                else {  time[1] = Integer.toString(minute); }
+                parts[3] = time[0]+":"+time[1]+":"+time[2];
+                oldDate = parts[0]+" "+parts[1]+" "+parts[2]+" "+parts[3]+" "+parts[4];
+                emotion.setDate(oldDate);
+                TextView dateView = (TextView) findViewById(R.id.dateView);
+                dateView.setText(emotion.getDate());
+
+            }
+        },1,1,true);
+        pickTime.show();
     }
 
     private String getMonth(int numMonth){

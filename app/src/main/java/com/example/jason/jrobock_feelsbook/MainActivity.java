@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
     private static final String FILENAME = "file.sav";
-    public ArrayList<Emotion> Emotions = new ArrayList<Emotion>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +77,16 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
     private void loadFromFile(){
         try {
+            EmotionList emotionList = EmotionListController.getEmotionList();
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<Emotion>>() {
             }.getType();
-            Emotions = gson.fromJson(in, listType);
+            emotionList = gson.fromJson(in, listType);
         }
         catch (FileNotFoundException e) {
-            Emotions = new ArrayList<Emotion>();
+            EmotionList emotionList = EmotionListController.getEmotionList();
         }
         catch (IOException e){
             throw new RuntimeException(e);
@@ -94,10 +94,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
     private void saveInFile() {
         try {
+            EmotionList emotionList = EmotionListController.getEmotionList();
             FileOutputStream fos = openFileOutput(FILENAME, 0);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
-            gson.toJson(Emotions, writer);
+            gson.toJson(emotionList, writer);
             writer.flush();
             fos.close();
         }
