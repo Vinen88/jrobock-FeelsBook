@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">jrobock-FeelsBook</string>
+    <string name="welcome">Please select a feeling:</string>
+    <string name="love">Love</string>
+    <string name="buttonJoy">Joy</string>
+    <string name="buttonSurprise">Surprise</string>
+    <string name="buttonAnger">Anger</string>
+    <string name="buttonSadness">Sadness</string>
+    <string name="buttonFear">Fear</string>
+    <string name="buttonHistory">History</string>
+    <string name="commentTexts">Comment (optional)</string>
+    <string name="buttonUpdateComment">Update Comment</string>
+    <string name="editDate">Edit Date</string>
+    <string name="editTime">Edit Time</string>
+</resources>
