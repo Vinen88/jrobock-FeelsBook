@@ -9,5 +9,16 @@ public class EmotionCounts {
         }
         return emotionCounts;
     }
+    public void addCount(String type){
+
+    }
+    public void removeCount(String type){
+
+    }
+
+    /*
+    create method to go over EmotionList and get type of every one and add back to
+    emotion counts!
+     */
 
 }
