@@ -10,7 +10,9 @@ public class Emotion {
     public Emotion(String comment, String emotionValue) throws textTooLongException{
         this.setText(comment);
         this.type = emotionValue;
-        this.date = new Date().toString();
+        String oldDate = new Date().toString();
+        String [] parts = oldDate.split(" ");
+        this.date = parts[2]+" "+parts[1]+" "+parts[5]+" "+parts[3]+" "+parts[4];
 
     }
 
@@ -29,8 +31,8 @@ public class Emotion {
             throw new textTooLongException();
         }
     }
-    public void setDate (Date date){
-        this.date = date.toString();
+    public void setDate (String date){
+        this.date = date;
     }
     public String toString(){
         return getType()+"\n"+getDate()+"\n"+getText();
