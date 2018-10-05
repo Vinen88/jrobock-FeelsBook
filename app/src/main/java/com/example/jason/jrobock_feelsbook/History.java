@@ -57,11 +57,6 @@ public class History extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        //ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
-        //Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
-        //final ArrayList<Emotion> list = new ArrayList<Emotion>(emotions);
-        //final ArrayAdapter<Emotion> emotionAdapter = new ArrayAdapter<Emotion>(this, android.R.layout.simple_list_item_1, list);
-        //listView.setAdapter(emotionAdapter);
         ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
         Collections.sort(EmotionListController.getEmotionList().emotionList);
         Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
@@ -84,7 +79,6 @@ public class History extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(History.this, EditEmotionActivity.class);
-                //intent.putExtra("Emotion",list.get(position));
                 EmotionListController.saveEmotion(list.get(position));
                 startActivity(intent);
             }
@@ -100,6 +94,7 @@ public class History extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         Emotion emotion = list.get(finalPosition);
                         EmotionListController.getEmotionList().removeEmotion(emotion);
+                        EmotionListController.saveInFile(History.this);
 
                     }
                 });
