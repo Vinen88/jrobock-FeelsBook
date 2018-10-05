@@ -23,12 +23,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 public class EditEmotionActivity extends AppCompatActivity {
     private Emotion emotion;
@@ -52,6 +55,7 @@ public class EditEmotionActivity extends AppCompatActivity {
         TextView commentView = (TextView) findViewById(R.id.commentText);
         emotion.setText(commentView.getText().toString());
         Toast.makeText(this,"Updated Comment",Toast.LENGTH_SHORT).show();
+        EmotionListController.getEmotionList().notifyListeners();
     }
     public void editDate(View view) {
         Calendar cal = Calendar.getInstance();
@@ -67,6 +71,7 @@ public class EditEmotionActivity extends AppCompatActivity {
                 emotion.setDate(date);
                 TextView dateView = (TextView) findViewById(R.id.dateView);
                 dateView.setText(emotion.getDate());
+                EmotionListController.getEmotionList().notifyListeners();
             }
         },year,month,day);
         newDate.show();
@@ -88,6 +93,7 @@ public class EditEmotionActivity extends AppCompatActivity {
                 emotion.setDate(oldDate);
                 TextView dateView = (TextView) findViewById(R.id.dateView);
                 dateView.setText(emotion.getDate());
+                EmotionListController.getEmotionList().notifyListeners();
 
             }
         },1,1,true);

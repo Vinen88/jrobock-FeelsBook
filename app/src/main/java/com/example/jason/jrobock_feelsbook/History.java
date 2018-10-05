@@ -42,6 +42,20 @@ public class History extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        //ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
+        //Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
+        //final ArrayList<Emotion> list = new ArrayList<Emotion>(emotions);
+        //final ArrayAdapter<Emotion> emotionAdapter = new ArrayAdapter<Emotion>(this, android.R.layout.simple_list_item_1, list);
+        //listView.setAdapter(emotionAdapter);
         ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
         Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
         final ArrayList<Emotion> list = new ArrayList<Emotion>(emotions);
@@ -77,13 +91,14 @@ public class History extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         Emotion emotion = list.get(finalPosition);
                         EmotionListController.getEmotionList().removeEmotion(emotion);
+
                     }
                 });
                 adb.setCancelable(true);
                 adb.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        }
+                    }
                 });
                 adb.show();
                 return true;
@@ -91,21 +106,5 @@ public class History extends Activity {
         });
 
 
-    }
-
-
-
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
-        Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
-        final ArrayList<Emotion> list = new ArrayList<Emotion>(emotions);
-        final ArrayAdapter<Emotion> emotionAdapter = new ArrayAdapter<Emotion>(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(emotionAdapter);
-        //loadFromFile();
-        //adapter = new ArrayAdapter<Emotion>(this, R.layout.list_item, Emotions);
-        //oldEmotionList.setAdapter(adapter);
     }
 }
