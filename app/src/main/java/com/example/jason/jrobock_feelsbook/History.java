@@ -43,6 +43,7 @@ public class History extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
 
     }
 
@@ -95,6 +96,7 @@ public class History extends Activity {
                         Emotion emotion = list.get(finalPosition);
                         EmotionListController.getEmotionList().removeEmotion(emotion);
                         EmotionListController.saveInFile(History.this);
+                        Collections.sort(EmotionListController.getEmotionList().emotionList);
 
                     }
                 });
