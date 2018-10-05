@@ -17,7 +17,23 @@ Copyright 2018 Jason Robock
 
 package com.example.jason.jrobock_feelsbook;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 public class EmotionListController {
+    private static final String FILENAME = "file.sav";
     private static EmotionList emotionList = null;
     private static Emotion emotion = null;
     static public EmotionList getEmotionList() {
@@ -36,9 +52,39 @@ public class EmotionListController {
         emotion = em;
     }
     static public Emotion getSave(){ return emotion;}
-    /*
-    Might want to move load/save file into here and use this to call it.
-    also might want to add a removeEmotion method so all emotion list activity
-    is done through here and saved right away
-     */
+
+    /* load and save from file taken from https://github.com/shidahe/lonelyTwitter */
+
+    static public void saveInFile(Context context) {
+        try {
+            FileOutputStream fos = context.openFileOutput(FILENAME, 0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(EmotionListController.getEmotionList().emotionList, writer);
+            writer.flush();
+            fos.close();
+        }
+        catch (FileNotFoundException e){
+            throw new RuntimeException(e);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    static public void loadFromFile(Context context){
+        try {
+            FileInputStream fis = context.openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Emotion>>() {}.getType();
+            EmotionListController.getEmotionList().emotionList = gson.fromJson(in, listType);
+        }
+        catch (FileNotFoundException e) {
+            EmotionListController.getEmotionList();
+        }
+        catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

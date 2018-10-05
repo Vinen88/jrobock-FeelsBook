@@ -56,7 +56,6 @@ public class History extends Activity {
 
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
         //ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
         //Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();

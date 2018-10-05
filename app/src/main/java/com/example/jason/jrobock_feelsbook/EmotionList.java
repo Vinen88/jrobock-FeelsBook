@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class EmotionList {
+
     protected ArrayList<Emotion> emotionList;
     protected ArrayList<Listener> listeners;
     private Emotion mostRecent;

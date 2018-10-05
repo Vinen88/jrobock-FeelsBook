@@ -61,18 +61,38 @@ public class Emotion implements Comparable<Emotion> {
         String outsideDate = emo.getDate();
         String [] outsideParts = outsideDate.split(" ");
         String [] parts = this.date.split(" ");
+        String [] outsideTime = outsideParts[3].split(":");
+        String [] time = parts[3].split(":");
         if ( Integer.parseInt(outsideParts[2]) <  Integer.parseInt(parts[2])){
             return 1;
         }
+
         if (getIntMonth(parts[1]) > getIntMonth(outsideParts[1])
-                && Integer.parseInt(outsideParts[2]) ==  Integer.parseInt(parts[2])) {
+                && Integer.parseInt(outsideParts[2]) == Integer.parseInt(parts[2])) {
             return 1;
         }
+
         if (Integer.parseInt(parts[0]) > Integer.parseInt(outsideParts[0])
+                && getIntMonth(parts[1]) == getIntMonth(outsideParts[1])
+                && Integer.parseInt(outsideParts[2]) == Integer.parseInt(parts[2])) {
+            return 1;
+        }
+
+        if (Integer.parseInt(time[0]) > Integer.parseInt(outsideTime[0])
+                && Integer.parseInt(parts[0]) == Integer.parseInt(outsideParts[0])
                 && getIntMonth(parts[1]) == getIntMonth(outsideParts[1])
                 && Integer.parseInt(outsideParts[2]) ==  Integer.parseInt(parts[2])){
             return 1;
         }
+
+        if (Integer.parseInt(time[1]) > Integer.parseInt(outsideTime[1])
+                && Integer.parseInt(time[0]) == Integer.parseInt(outsideTime[0])
+                && Integer.parseInt(parts[0]) == Integer.parseInt(outsideParts[0])
+                && getIntMonth(parts[1]) == getIntMonth(outsideParts[1])
+                && Integer.parseInt(outsideParts[2]) ==  Integer.parseInt(parts[2])){
+            return 1;
+        }
+
         return -1;
     }
 
