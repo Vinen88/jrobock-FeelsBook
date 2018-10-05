@@ -57,7 +57,6 @@ public class EditEmotionActivity extends AppCompatActivity {
         emotion.setText(commentView.getText().toString());
         Toast.makeText(this,"Updated Comment",Toast.LENGTH_SHORT).show();
         EmotionListController.getEmotionList().notifyListeners();
-        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
     public void editDate(View view) {
         Calendar cal = Calendar.getInstance();
@@ -77,7 +76,6 @@ public class EditEmotionActivity extends AppCompatActivity {
             }
         },year,month,day);
         newDate.show();
-        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
 
     public void EditTime(View view){
@@ -101,7 +99,6 @@ public class EditEmotionActivity extends AppCompatActivity {
             }
         },1,1,true);
         pickTime.show();
-        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
 
     private String getMonth(int numMonth){
