@@ -4,40 +4,49 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class EmotionCounts {
-    private static int[] emotionCounts = null;
+    protected static int[] emotionCounts =  new int[] {0,0,0,0,0,0};
     static public int[] getEmotionCounts() {
-        if (emotionCounts == null){
-            /*Love,Joy,Surprise,Anger,Sadness,Fear I should just use a dict god damn it.*/
-            emotionCounts =  new int[] {0,0,0,0,0,0};
-
-        }
         return emotionCounts;
     }
 
-    public void removeCount(String type) {
+    static public void removeCount(String type) {
         switch (type){
             case "Love" : emotionCounts[0]--;
+                        break;
             case "Joy" : emotionCounts[1]--;
+                        break;
             case "Surprise" : emotionCounts[2]--;
+                            break;
             case "Anger" : emotionCounts[3]--;
+                        break;
             case "Sadness" : emotionCounts[4]--;
+                        break;
             case "Fear" : emotionCounts[5]--;
+                        break;
         }
 
     }
 
-    public void addCount(String type) {
+    static public void addCount(String type) {
         switch (type){
             case "Love" : emotionCounts[0]++;
+                          break;
             case "Joy" : emotionCounts[1]++;
+                         break;
             case "Surprise" : emotionCounts[2]++;
+                            break;
             case "Anger" : emotionCounts[3]++;
+                            break;
             case "Sadness" : emotionCounts[4]++;
+                        break;
             case "Fear" : emotionCounts[5]++;
+                        break;
         }
     }
-
-    public void initialize() {
+    /*
+    this shits broken will fix tomrrow
+     */
+    static public void initialize() {
        for(Emotion em : EmotionListController.getEmotionList().emotionList){
            addCount(em.getType());
         }

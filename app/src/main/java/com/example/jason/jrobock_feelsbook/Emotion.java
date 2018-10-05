@@ -30,6 +30,7 @@ public class Emotion implements Comparable<Emotion> {
         String oldDate = new Date().toString();
         String [] parts = oldDate.split(" ");
         this.date = parts[2]+" "+parts[1]+" "+parts[5]+" "+parts[3]+" "+parts[4];
+        EmotionCounts.addCount(this.type);
 
     }
 

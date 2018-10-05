@@ -37,6 +37,7 @@ public class EmotionList {
         mostRecent = emotion;
     }
     public void removeEmotion(Emotion emotion){
+        EmotionCounts.removeCount(emotion.getType());
         emotionList.remove(emotion);
         notifyListeners();
     }

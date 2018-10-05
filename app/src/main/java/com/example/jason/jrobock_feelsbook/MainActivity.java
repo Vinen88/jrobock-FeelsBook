@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -46,6 +47,28 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateTextBoxes();
+
+    }
+    private void updateTextBoxes(){
+        TextView loveView = (TextView) findViewById(R.id.loveCount);
+        loveView.setText(Integer.toString(EmotionCounts.emotionCounts[0]));
+        TextView joyView = (TextView) findViewById(R.id.JoyCount);
+        joyView.setText(Integer.toString(EmotionCounts.emotionCounts[1]));
+        TextView surpriseView = (TextView) findViewById(R.id.SurpriseCount);
+        surpriseView.setText(Integer.toString(EmotionCounts.emotionCounts[2]));
+        TextView angerView = (TextView) findViewById(R.id.AngerCount);
+        angerView.setText(Integer.toString(EmotionCounts.emotionCounts[3]));
+        TextView sadnessView = (TextView) findViewById(R.id.SadnessCount);
+        sadnessView.setText(Integer.toString(EmotionCounts.emotionCounts[4]));
+        TextView fearView = (TextView) findViewById(R.id.FearCount);
+        fearView.setText(Integer.toString(EmotionCounts.emotionCounts[5]));
+    }
+
     public void selectJoy(View view) {
         Toast.makeText(this,"Selected Joy",Toast.LENGTH_SHORT).show();
         work("Joy");
@@ -87,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         try {
             ec.addEmotion(new Emotion(comment, em));
+            updateTextBoxes();
         }catch (textTooLongException e){
             Toast.makeText(this,"Text too long",Toast.LENGTH_SHORT).show();
         }
