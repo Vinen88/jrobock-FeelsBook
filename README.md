@@ -14,6 +14,8 @@ Copyright 2018 Jason Robock
    limitations under the License.
 
  */
+ Demo video has a bug that is no longer in the .apk or code - no longer enters wrong sorting order after deletion!
+ didnt have time to remake video as laptop would crash while recording!
  Demo Video: https://youtu.be/313yL8729PY
  
  sources:
