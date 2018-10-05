@@ -19,7 +19,7 @@ package com.example.jason.jrobock_feelsbook;
 
 import java.util.Date;
 
-public class Emotion {
+public class Emotion implements Comparable<Emotion> {
     private String text;
     private String date;
     private String type;
@@ -53,6 +53,46 @@ public class Emotion {
     }
     public String toString(){
         return getType()+"\n"+getDate()+"\n"+getText();
+    }
+
+    @Override
+    public int compareTo(Emotion emo){
+        String outsideDate = emo.getDate();
+        String [] outsideParts = outsideDate.split(" ");
+        String [] parts = this.date.split(" ");
+        if ( Integer.parseInt(outsideParts[2]) <  Integer.parseInt(parts[2])){
+            return 1;
+        }
+        if (getIntMonth(parts[1]) > getIntMonth(outsideParts[1])
+                && Integer.parseInt(outsideParts[2]) ==  Integer.parseInt(parts[2])) {
+            return 1;
+        }
+        if (Integer.parseInt(parts[0]) > Integer.parseInt(outsideParts[0])
+                && getIntMonth(parts[1]) == getIntMonth(outsideParts[1])
+                && Integer.parseInt(outsideParts[2]) ==  Integer.parseInt(parts[2])){
+            return 1;
+        }
+        return -1;
+    }
+
+    private int getIntMonth(String month){
+        switch (month){
+            case "Jan" : return 1;
+            case "Feb" : return 2;
+            case "Mar" : return 3;
+            case "Apr" : return 4;
+            case "May" : return 5;
+            case "Jun" : return 6;
+            case "Jul" : return 7;
+            case "Aug" : return 8;
+            case "Sep" : return 9;
+            case "Oct" : return 10;
+            case "Nov" : return 11;
+            case "Dec" : return 12;
+
+
+        }
+        return 0;
     }
 
 }

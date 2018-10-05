@@ -32,6 +32,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 
 public class EditEmotionActivity extends AppCompatActivity {
     private Emotion emotion;
@@ -56,6 +57,7 @@ public class EditEmotionActivity extends AppCompatActivity {
         emotion.setText(commentView.getText().toString());
         Toast.makeText(this,"Updated Comment",Toast.LENGTH_SHORT).show();
         EmotionListController.getEmotionList().notifyListeners();
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
     public void editDate(View view) {
         Calendar cal = Calendar.getInstance();
@@ -75,6 +77,7 @@ public class EditEmotionActivity extends AppCompatActivity {
             }
         },year,month,day);
         newDate.show();
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
 
     public void EditTime(View view){
@@ -98,6 +101,7 @@ public class EditEmotionActivity extends AppCompatActivity {
             }
         },1,1,true);
         pickTime.show();
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
 
     private String getMonth(int numMonth){
@@ -119,4 +123,5 @@ public class EditEmotionActivity extends AppCompatActivity {
         }
         return "Opps";
     }
+
 }

@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 
 public class History extends Activity {
@@ -43,6 +44,12 @@ public class History extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
     }
 
 
@@ -57,10 +64,13 @@ public class History extends Activity {
         //final ArrayAdapter<Emotion> emotionAdapter = new ArrayAdapter<Emotion>(this, android.R.layout.simple_list_item_1, list);
         //listView.setAdapter(emotionAdapter);
         ListView listView = (ListView) findViewById(R.id.Emotion_dynamic);
+        Collections.sort(EmotionListController.getEmotionList().emotionList);
         Collection<Emotion> emotions = EmotionListController.getEmotionList().getEmotions();
         final ArrayList<Emotion> list = new ArrayList<Emotion>(emotions);
         final ArrayAdapter<Emotion> emotionAdapter = new ArrayAdapter<Emotion>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(emotionAdapter);
+
+
 
         EmotionListController.getEmotionList().addListener(new Listener() {
             @Override
