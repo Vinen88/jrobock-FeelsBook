@@ -1,4 +1,6 @@
 /*
+Activity for editing Emotion classes mainly calls on other classes to do actual work
+
 Copyright 2018 Jason Robock
 
    Licensed under the Apache License, Version 2.0 (the "License");

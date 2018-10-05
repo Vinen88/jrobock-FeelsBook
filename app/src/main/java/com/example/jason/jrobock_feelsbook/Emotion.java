@@ -1,4 +1,6 @@
 /*
+Emotion class, does some work with compareTo is super messy beause string dates
+
 Copyright 2018 Jason Robock
 
    Licensed under the Apache License, Version 2.0 (the "License");
