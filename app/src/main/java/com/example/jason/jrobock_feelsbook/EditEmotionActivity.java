@@ -76,10 +76,11 @@ public class EditEmotionActivity extends AppCompatActivity {
                 TextView dateView = (TextView) findViewById(R.id.dateView);
                 dateView.setText(emotion.getDate());
                 EmotionListController.getEmotionList().notifyListeners();
+                EmotionListController.saveInFile(EditEmotionActivity.this);
             }
         },year,month,day);
         newDate.show();
-        EmotionListController.saveInFile(EditEmotionActivity.this);
+
     }
 
     public void EditTime(View view){
@@ -99,11 +100,11 @@ public class EditEmotionActivity extends AppCompatActivity {
                 TextView dateView = (TextView) findViewById(R.id.dateView);
                 dateView.setText(emotion.getDate());
                 EmotionListController.getEmotionList().notifyListeners();
+                EmotionListController.saveInFile(EditEmotionActivity.this);
 
             }
         },1,1,true);
         pickTime.show();
-        EmotionListController.saveInFile(EditEmotionActivity.this);
     }
 
     private String getMonth(int numMonth){
